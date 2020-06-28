@@ -1,0 +1,1 @@
+{"mappings":"AAAA,EACA,QAAA,CACA,SAAA,CACA,WAAA,CACA,YAAA,CACA,eACA","sources":["./src/index.css"],"sourcesContent":["* {\n  margin: 0;\n  padding: 0;\n  width: 100vw;\n  height: 100vh;\n  overflow: hidden;\n}\n"],"names":[],"version":3,"file":"friangle.f9357dbe.css.map"}
