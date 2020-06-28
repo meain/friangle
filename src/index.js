@@ -37,7 +37,7 @@ window.onload = function() {
     let newItems = [];
     for (item of iter) {
       drawTriangle(context, item[0], item[1], item[2], item[2], grd);
-      newItems.push([item[0], item[1] + size / 2, item[2] / 2]);
+      newItems.push([item[0], item[1] - size / 4, item[2] / 2]);
       newItems.push([item[0] - size / 4, item[1] + size / 4, item[2] / 2]);
       newItems.push([item[0] + size / 4, item[1] + size / 4, item[2] / 2]);
     }
