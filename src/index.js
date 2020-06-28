@@ -13,7 +13,7 @@ function drawTriangle(context, x, y, triangleWidth, triangleHeight, fillStyle) {
 
 window.onload = function() {
   var grd;
-  var size = 150;
+  var size = Math.min(canvas.height, canvas.width);
   const triangleX = canvas.width / 2;
   var triangleY = canvas.height / 2 - size / 2;
 
@@ -23,26 +23,33 @@ window.onload = function() {
     canvas.width / 5,
     triangleY + size
   );
-  grd.addColorStop(0, "#8ED6FF"); // light blue
-  grd.addColorStop(1, "#004CB3"); // dark blue
+  grd.addColorStop(0, "#8ED6FF");
+  grd.addColorStop(1, "#004CB3");
 
   let items = [[triangleX, triangleY, size]];
   setInterval(() => {
+    if (items.length > 100000) items = [[triangleX, triangleY, size]]; // otherwise it will blow up
     context.clearRect(0, 0, canvas.width, canvas.height);
-    // context.translate(canvas.width / 4, canvas.height / 4);
-    // context.scale(0.5, 0.5);
     console.log("redraw");
     const iter = [...items];
     console.log("iter:", iter);
     let newItems = [];
     for (item of iter) {
       drawTriangle(context, item[0], item[1], item[2], item[2], grd);
-      newItems.push([item[0], item[1] - size / 4, item[2] / 2]);
-      newItems.push([item[0] - size / 4, item[1] + size / 4, item[2] / 2]);
-      newItems.push([item[0] + size / 4, item[1] + size / 4, item[2] / 2]);
+      newItems.push([item[0], item[1], item[2] / 2]);
+      newItems.push([
+        item[0] - item[2] / 4,
+        item[1] + item[2] / 2,
+        item[2] / 2
+      ]);
+      newItems.push([
+        item[0] + item[2] / 4,
+        item[1] + item[2] / 2,
+        item[2] / 2
+      ]);
     }
     items = newItems;
-  }, 5000);
+  }, 1000);
 };
 
 (function() {
